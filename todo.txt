@@ -1,0 +1,29 @@
+VR Final Proj:
+- Create World Environment
+    - Box world
+    - DJ stage middle
+    - 3D array of light balls
+    - Strings connecting the balls to rafters
+    - Spawn room 
+    - Mini world 
+    - shapes
+- Light collision logic
+    - Do a stress test for lots of area3d
+    - Should the shapes or lights be the colliding/collided for efficiency
+    - Another type of logic for LookAt spotlight/laser
+    - How to handle multiple shapes at same point (Lerp/avg colors?)
+- Add basic movement, non physics based.
+- UI for DJ to control lighting
+    - Interactive color change
+        - 3D HSV space with click to lock in color
+    - Pop up button UI for mode switching
+    - Basic chill music selection
+    - Some way to spin objects around the dj
+- Extra:
+    - Custom songs
+    - Audio link
+    - Change waviness of a object
+    - Shape that take clicks and creates drop in water 3d effects
+    - Start with basic shapes spawned. extra have shape spawner
+    - Be able to move Mini world
+    - Make world look nicer (video players for fx?)
