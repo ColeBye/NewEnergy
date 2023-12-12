@@ -3,7 +3,6 @@ VR Final Proj:
     - Box world
     - DJ stage middle
     - 3D array of light balls
-    - Strings connecting the balls to rafters
     - Spawn room 
     - Mini world 
     - shapes
@@ -27,3 +26,11 @@ VR Final Proj:
     - Start with basic shapes spawned. extra have shape spawner
     - Be able to move Mini world
     - Make world look nicer (video players for fx?)
+    - Strings connecting the balls to rafters
+
+
+Tasks:
+- Make locomotion and turning
+- make sure it walks up slopes
+- first test of logic for lights
+- respresentaion of mini world
