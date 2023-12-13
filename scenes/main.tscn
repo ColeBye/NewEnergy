@@ -1,7 +1,9 @@
-[gd_scene load_steps=29 format=3 uid="uid://cd48vg13uv5t"]
+[gd_scene load_steps=34 format=3 uid="uid://cd48vg13uv5t"]
 
 [ext_resource type="PackedScene" uid="uid://b4kad2kuba1yn" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_hand_low.tscn" id="1_jrngj"]
+[ext_resource type="Script" path="res://scripts/initialize.gd" id="1_ocdcg"]
 [ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="2_umgjk"]
+[ext_resource type="Material" uid="uid://ska7mdhxp7vn" path="res://materials/main.tres" id="2_xd1r2"]
 [ext_resource type="PackedScene" uid="uid://l2n30mpbkdyw" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_hand_low.tscn" id="2_xiexc"]
 [ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="4_qyenj"]
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="5_5y3fa"]
@@ -78,16 +80,28 @@ albedo_color = Color(0.278431, 0.278431, 0.278431, 1)
 material = SubResource("StandardMaterial3D_x72jf")
 size = Vector2(60, 60)
 
+[sub_resource type="BoxMesh" id="BoxMesh_tkb3h"]
+material = ExtResource("2_xd1r2")
+size = Vector3(5, 1, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qmpch"]
+size = Vector3(5, 1, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8fwgu"]
+size = Vector3(5, 1, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ghv3k"]
+material = ExtResource("2_xd1r2")
+size = Vector3(5, 1, 2)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kpmmg"]
 albedo_color = Color(0, 0.352941, 0.239216, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5q65i"]
 albedo_color = Color(0, 0.352941, 0.239216, 1)
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xlqif"]
-height = 1.8
-
 [node name="Main" type="Node3D"]
+script = ExtResource("1_ocdcg")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_oaw4r")
@@ -164,37 +178,66 @@ shape = SubResource("BoxShape3D_g7gtl")
 transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 20, -10)
 mesh = SubResource("PlaneMesh_1hdxt")
 
-[node name="XRUser" type="RigidBody3D" parent="."]
+[node name="DJSet" type="Node3D" parent="Building"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -10)
 
-[node name="XROrigin3D" type="XROrigin3D" parent="XRUser"]
+[node name="Platform" type="StaticBody3D" parent="Building/DJSet"]
 
-[node name="XRCamera3D" type="XRCamera3D" parent="XRUser/XROrigin3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Building/DJSet/Platform"]
+mesh = SubResource("BoxMesh_tkb3h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Building/DJSet/Platform"]
+shape = SubResource("BoxShape3D_qmpch")
+
+[node name="Stair1Collider" type="CollisionShape3D" parent="Building/DJSet/Platform"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, -0.427876, -3.11978)
+shape = SubResource("BoxShape3D_8fwgu")
+
+[node name="Stair1Mesh" type="MeshInstance3D" parent="Building/DJSet/Platform"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, -0.428, -3.12)
+mesh = SubResource("BoxMesh_ghv3k")
+
+[node name="Stair2Collider" type="CollisionShape3D" parent="Building/DJSet/Platform"]
+transform = Transform3D(-4.37114e-08, 0.5, -0.866025, 0, 0.866025, 0.5, 1, 2.18557e-08, -3.78552e-08, 3.11, -0.427876, 0)
+shape = SubResource("BoxShape3D_8fwgu")
+
+[node name="Stair2Mesh" type="MeshInstance3D" parent="Building/DJSet/Platform"]
+transform = Transform3D(-4.37114e-08, 0.5, -0.866025, 0, 0.866025, 0.5, 1, 2.18557e-08, -3.78552e-08, 3.11, -0.428, 0)
+mesh = SubResource("BoxMesh_ghv3k")
+
+[node name="Stair3Collider" type="CollisionShape3D" parent="Building/DJSet/Platform"]
+transform = Transform3D(-4.37114e-08, -0.5, 0.866025, 0, 0.866025, 0.5, -1, 2.18557e-08, -3.78552e-08, -3.11, -0.427876, 0)
+shape = SubResource("BoxShape3D_8fwgu")
+
+[node name="Stair3Mesh" type="MeshInstance3D" parent="Building/DJSet/Platform"]
+transform = Transform3D(-4.37114e-08, -0.5, 0.866025, 0, 0.866025, 0.5, -1, 2.18557e-08, -3.78552e-08, -3.11, -0.428, 0)
+mesh = SubResource("BoxMesh_ghv3k")
+
+[node name="XROrigin3D" type="XROrigin3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 28.5476)
+
+[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 
-[node name="LeftController" type="XRController3D" parent="XRUser/XROrigin3D"]
+[node name="LeftController" type="XRController3D" parent="XROrigin3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 1, 0)
 tracker = &"left_hand"
 
-[node name="LeftHand" parent="XRUser/XROrigin3D/LeftController" instance=ExtResource("1_jrngj")]
+[node name="LeftHand" parent="XROrigin3D/LeftController" instance=ExtResource("1_jrngj")]
 hand_material_override = SubResource("StandardMaterial3D_kpmmg")
 
-[node name="MovementDirect" parent="XRUser/XROrigin3D/LeftController" instance=ExtResource("2_umgjk")]
+[node name="MovementDirect" parent="XROrigin3D/LeftController" instance=ExtResource("2_umgjk")]
+max_speed = 6.0
 strafe = true
-input_action = "thumbstick"
 
-[node name="RightController" type="XRController3D" parent="XRUser/XROrigin3D"]
+[node name="RightController" type="XRController3D" parent="XROrigin3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 1, 0)
 tracker = &"right_hand"
 
-[node name="RightHand" parent="XRUser/XROrigin3D/RightController" instance=ExtResource("2_xiexc")]
+[node name="RightHand" parent="XROrigin3D/RightController" instance=ExtResource("2_xiexc")]
 hand_material_override = SubResource("StandardMaterial3D_5q65i")
 
-[node name="MovementTurn" parent="XRUser/XROrigin3D/RightController" instance=ExtResource("4_qyenj")]
+[node name="MovementTurn" parent="XROrigin3D/RightController" instance=ExtResource("4_qyenj")]
 turn_mode = 2
-input_action = "thumbstick"
 
-[node name="PlayerBody" parent="XRUser/XROrigin3D" instance=ExtResource("5_5y3fa")]
-
-[node name="UserCollider" type="CollisionShape3D" parent="XRUser"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
-shape = SubResource("CapsuleShape3D_xlqif")
+[node name="PlayerBody" parent="XROrigin3D" instance=ExtResource("5_5y3fa")]

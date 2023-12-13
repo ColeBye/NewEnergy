@@ -30,7 +30,6 @@ VR Final Proj:
 
 
 Tasks:
-- Make locomotion and turning
-- make sure it walks up slopes
+- get desk/deck assets
 - first test of logic for lights
 - respresentaion of mini world
