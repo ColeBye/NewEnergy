@@ -5,10 +5,9 @@ VR Final Proj:
     - 3D array of light balls
     - Spawn room 
     - Mini world 
-    - shapes
+    - shapes(detectors)
 - Light collision logic
     - Do a stress test for lots of area3d
-    - Should the shapes or lights be the colliding/collided for efficiency
     - Another type of logic for LookAt spotlight/laser
     - How to handle multiple shapes at same point (Lerp/avg colors?)
 - Add basic movement, non physics based.
@@ -19,17 +18,18 @@ VR Final Proj:
     - Basic chill music selection
     - Some way to spin objects around the dj
 - Extra:
-    - Custom songs
+    - Custom songs, video player, vp in 3d lights
     - Audio link
     - Change waviness of a object
-    - Shape that take clicks and creates drop in water 3d effects
+    - Shape that take clicks and creates outward pulse
     - Start with basic shapes spawned. extra have shape spawner
     - Be able to move Mini world
     - Make world look nicer (video players for fx?)
     - Strings connecting the balls to rafters
+    - actual dj deck asset
+    - lights are unoptimal, so sneak in a few actual responsive lights
 
 
 Tasks:
-- get desk/deck assets
 - first test of logic for lights
-- respresentaion of mini world
+- build up physical mini world and bulb array

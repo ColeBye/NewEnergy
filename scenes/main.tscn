@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://cd48vg13uv5t"]
+[gd_scene load_steps=47 format=3 uid="uid://cd48vg13uv5t"]
 
 [ext_resource type="PackedScene" uid="uid://b4kad2kuba1yn" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_hand_low.tscn" id="1_jrngj"]
 [ext_resource type="Script" path="res://scripts/initialize.gd" id="1_ocdcg"]
@@ -7,6 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://l2n30mpbkdyw" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_hand_low.tscn" id="2_xiexc"]
 [ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="4_qyenj"]
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="5_5y3fa"]
+[ext_resource type="Script" path="res://scripts/shape.gd" id="7_2r3p2"]
+[ext_resource type="Script" path="res://scripts/LightArray.gd" id="8_twsd0"]
+[ext_resource type="Script" path="res://scripts/bulb.gd" id="11_ggrom"]
+[ext_resource type="Script" path="res://scripts/detector.gd" id="12_jjb5f"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0uoyk"]
 sky_top_color = Color(0.0980392, 0.211765, 0.627451, 1)
@@ -24,7 +28,7 @@ tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ys00x"]
-albedo_color = Color(0.121569, 0.121569, 0.121569, 1)
+albedo_color = Color(0.113725, 0.113725, 0.117647, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_lx8ug"]
 material = SubResource("StandardMaterial3D_ys00x")
@@ -94,11 +98,36 @@ size = Vector3(5, 1, 2)
 material = ExtResource("2_xd1r2")
 size = Vector3(5, 1, 2)
 
+[sub_resource type="BoxMesh" id="BoxMesh_5s17v"]
+size = Vector3(5, 0.2, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ruknb"]
+size = Vector3(0.2, 1, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_4korl"]
+size = Vector2(5, 2)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kpmmg"]
 albedo_color = Color(0, 0.352941, 0.239216, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5q65i"]
 albedo_color = Color(0, 0.352941, 0.239216, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kbtah"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ensqf"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l0k08"]
+albedo_color = Color(0.796078, 0, 0.32549, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_4gy8b"]
+material = SubResource("StandardMaterial3D_l0k08")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_w38ev"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_25r7r"]
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_ocdcg")
@@ -213,8 +242,24 @@ shape = SubResource("BoxShape3D_8fwgu")
 transform = Transform3D(-4.37114e-08, -0.5, 0.866025, 0, 0.866025, 0.5, -1, 2.18557e-08, -3.78552e-08, -3.11, -0.428, 0)
 mesh = SubResource("BoxMesh_ghv3k")
 
+[node name="Desk" type="MeshInstance3D" parent="Building/DJSet"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, 2)
+mesh = SubResource("BoxMesh_5s17v")
+
+[node name="LegLeft" type="MeshInstance3D" parent="Building/DJSet/Desk"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4, -0.41, 0)
+mesh = SubResource("BoxMesh_ruknb")
+
+[node name="LegRight" type="MeshInstance3D" parent="Building/DJSet/Desk"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4, -0.41, 0)
+mesh = SubResource("BoxMesh_ruknb")
+
+[node name="Front" type="MeshInstance3D" parent="Building/DJSet/Desk"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.9, 0.501)
+mesh = SubResource("PlaneMesh_4korl")
+
 [node name="XROrigin3D" type="XROrigin3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 28.5476)
+transform = Transform3D(-0.99821, 0, -0.0598116, 0, 1, 0, 0.0598116, 0, -0.99821, 0, 1.05358, -10.0457)
 
 [node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
@@ -240,4 +285,70 @@ hand_material_override = SubResource("StandardMaterial3D_5q65i")
 [node name="MovementTurn" parent="XROrigin3D/RightController" instance=ExtResource("4_qyenj")]
 turn_mode = 2
 
+[node name="Dummy" type="Area3D" parent="XROrigin3D/RightController"]
+script = ExtResource("7_2r3p2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/RightController/Dummy"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_kbtah")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="XROrigin3D/RightController/Dummy"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_ensqf")
+
 [node name="PlayerBody" parent="XROrigin3D" instance=ExtResource("5_5y3fa")]
+
+[node name="LightArray" type="Node3D" parent="."]
+script = ExtResource("8_twsd0")
+
+[node name="L" type="Node3D" parent="LightArray"]
+
+[node name="Z1" type="Node3D" parent="LightArray/L"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.15748, 2.68011, -8.21985)
+metadata/z = 0
+
+[node name="Y1" type="Node3D" parent="LightArray/L/Z1"]
+metadata/y = 0
+
+[node name="X1" type="Node3D" parent="LightArray/L/Z1/Y1"]
+metadata/x = 0
+
+[node name="BulbMesh" type="MeshInstance3D" parent="LightArray/L/Z1/Y1/X1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.10894, 0, 0)
+mesh = SubResource("SphereMesh_4gy8b")
+script = ExtResource("11_ggrom")
+
+[node name="D" type="Node3D" parent="LightArray"]
+
+[node name="Z1" type="Node3D" parent="LightArray/D"]
+metadata/z = 0
+
+[node name="Y1" type="Node3D" parent="LightArray/D/Z1"]
+metadata/y = 0
+
+[node name="X1" type="Node3D" parent="LightArray/D/Z1/Y1"]
+metadata/x = 0
+
+[node name="TestDetector" type="StaticBody3D" parent="LightArray/D/Z1/Y1/X1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.23557, 2.86985, -8.33003)
+script = ExtResource("12_jjb5f")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LightArray/D/Z1/Y1/X1/TestDetector"]
+shape = SubResource("SphereShape3D_w38ev")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LightArray/D/Z1/Y1/X1/TestDetector"]
+mesh = SubResource("SphereMesh_25r7r")
+
+[node name="TestDetector2" type="StaticBody3D" parent="LightArray/D/Z1/Y1/X1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.85024, -8.33003)
+script = ExtResource("12_jjb5f")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LightArray/D/Z1/Y1/X1/TestDetector2"]
+shape = SubResource("SphereShape3D_w38ev")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LightArray/D/Z1/Y1/X1/TestDetector2"]
+mesh = SubResource("SphereMesh_25r7r")
+
+[connection signal="body_entered" from="XROrigin3D/RightController/Dummy" to="XROrigin3D/RightController/Dummy" method="_on_body_entered"]
+[connection signal="body_exited" from="XROrigin3D/RightController/Dummy" to="XROrigin3D/RightController/Dummy" method="_on_body_exited"]
