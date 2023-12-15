@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://cd48vg13uv5t"]
+[gd_scene load_steps=48 format=3 uid="uid://cd48vg13uv5t"]
 
 [ext_resource type="PackedScene" uid="uid://b4kad2kuba1yn" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_hand_low.tscn" id="1_jrngj"]
 [ext_resource type="Script" path="res://scripts/initialize.gd" id="1_ocdcg"]
@@ -9,8 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="5_5y3fa"]
 [ext_resource type="Script" path="res://scripts/shape.gd" id="7_2r3p2"]
 [ext_resource type="Script" path="res://scripts/LightArray.gd" id="8_twsd0"]
+[ext_resource type="Script" path="res://scripts/axis.gd" id="10_ut2de"]
 [ext_resource type="Script" path="res://scripts/bulb.gd" id="11_ggrom"]
-[ext_resource type="Script" path="res://scripts/detector.gd" id="12_jjb5f"]
+[ext_resource type="PackedScene" uid="uid://cmlre70aowmpu" path="res://scenes/detector.tscn" id="12_oded7"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0uoyk"]
 sky_top_color = Color(0.0980392, 0.211765, 0.627451, 1)
@@ -110,24 +111,28 @@ size = Vector2(5, 2)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kpmmg"]
 albedo_color = Color(0, 0.352941, 0.239216, 1)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_vdr4u"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_slxew"]
+albedo_color = Color(0.721569, 0.407843, 0.0588235, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_r2sqv"]
+material = SubResource("StandardMaterial3D_slxew")
+size = Vector3(0.1, 0.1, 0.1)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5q65i"]
 albedo_color = Color(0, 0.352941, 0.239216, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a2l1y"]
+albedo_color = Color(0, 0.752941, 0.380392, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_kbtah"]
+material = SubResource("StandardMaterial3D_a2l1y")
 size = Vector3(0.1, 0.1, 0.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ensqf"]
 size = Vector3(0.1, 0.1, 0.1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l0k08"]
-albedo_color = Color(0.796078, 0, 0.32549, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_4gy8b"]
-material = SubResource("StandardMaterial3D_l0k08")
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_w38ev"]
-
-[sub_resource type="SphereMesh" id="SphereMesh_25r7r"]
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_ocdcg")
@@ -275,6 +280,19 @@ hand_material_override = SubResource("StandardMaterial3D_kpmmg")
 max_speed = 6.0
 strafe = true
 
+[node name="Dummy2" type="Area3D" parent="XROrigin3D/LeftController"]
+collision_mask = 513
+script = ExtResource("7_2r3p2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="XROrigin3D/LeftController/Dummy2"]
+transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 0, 3.72529e-09, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_vdr4u")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/LeftController/Dummy2"]
+transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 0, 3.72529e-09, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_r2sqv")
+skeleton = NodePath("")
+
 [node name="RightController" type="XRController3D" parent="XROrigin3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 1, 0)
 tracker = &"right_hand"
@@ -286,15 +304,14 @@ hand_material_override = SubResource("StandardMaterial3D_5q65i")
 turn_mode = 2
 
 [node name="Dummy" type="Area3D" parent="XROrigin3D/RightController"]
+collision_mask = 513
 script = ExtResource("7_2r3p2")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/RightController/Dummy"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("BoxMesh_kbtah")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="XROrigin3D/RightController/Dummy"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_ensqf")
 
 [node name="PlayerBody" parent="XROrigin3D" instance=ExtResource("5_5y3fa")]
@@ -304,51 +321,135 @@ script = ExtResource("8_twsd0")
 
 [node name="L" type="Node3D" parent="LightArray"]
 
-[node name="Z1" type="Node3D" parent="LightArray/L"]
+[node name="Z0" type="Node3D" parent="LightArray/L"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.15748, 2.68011, -8.21985)
-metadata/z = 0
+script = ExtResource("10_ut2de")
 
-[node name="Y1" type="Node3D" parent="LightArray/L/Z1"]
-metadata/y = 0
+[node name="Y0" type="Node3D" parent="LightArray/L/Z0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.27389, 0, 0)
+script = ExtResource("10_ut2de")
 
-[node name="X1" type="Node3D" parent="LightArray/L/Z1/Y1"]
-metadata/x = 0
-
-[node name="BulbMesh" type="MeshInstance3D" parent="LightArray/L/Z1/Y1/X1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.10894, 0, 0)
-mesh = SubResource("SphereMesh_4gy8b")
+[node name="SB0" type="MeshInstance3D" parent="LightArray/L/Z0/Y0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.167126, 0, 0.298)
 script = ExtResource("11_ggrom")
 
+[node name="SB1" type="MeshInstance3D" parent="LightArray/L/Z0/Y0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.582593, -0.0103209, 0.265268)
+script = ExtResource("11_ggrom")
+xval = 1
+
+[node name="Y1" type="Node3D" parent="LightArray/L/Z0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.27389, 0.39773, 0)
+script = ExtResource("10_ut2de")
+axis = 1
+
+[node name="SB0" type="MeshInstance3D" parent="LightArray/L/Z0/Y1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.215241, 0, 0.298)
+script = ExtResource("11_ggrom")
+
+[node name="SB1" type="MeshInstance3D" parent="LightArray/L/Z0/Y1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.582593, -0.0103209, 0.265268)
+script = ExtResource("11_ggrom")
+xval = 1
+
+[node name="Z1" type="Node3D" parent="LightArray/L"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.15748, 2.68011, -6.96355)
+script = ExtResource("10_ut2de")
+axis = 1
+
+[node name="Y0" type="Node3D" parent="LightArray/L/Z1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.27389, 0, 0)
+script = ExtResource("10_ut2de")
+
+[node name="SB0" type="MeshInstance3D" parent="LightArray/L/Z1/Y0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.171552, 0, 0.298)
+script = ExtResource("11_ggrom")
+
+[node name="SB1" type="MeshInstance3D" parent="LightArray/L/Z1/Y0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.582593, -0.0103209, 0.265268)
+script = ExtResource("11_ggrom")
+xval = 1
+
+[node name="Y1" type="Node3D" parent="LightArray/L/Z1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.27389, 0.39773, 0)
+script = ExtResource("10_ut2de")
+axis = 1
+
+[node name="SB0" type="MeshInstance3D" parent="LightArray/L/Z1/Y1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.142101, 0, 0.298)
+script = ExtResource("11_ggrom")
+
+[node name="SB1" type="MeshInstance3D" parent="LightArray/L/Z1/Y1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.582593, -0.0103209, 0.265268)
+script = ExtResource("11_ggrom")
+xval = 1
+
 [node name="D" type="Node3D" parent="LightArray"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.654083, 0)
+
+[node name="Z0" type="Node3D" parent="LightArray/D"]
+script = ExtResource("10_ut2de")
+
+[node name="Y0" type="Node3D" parent="LightArray/D/Z0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.201854, 0)
+script = ExtResource("10_ut2de")
+
+[node name="Detector" parent="LightArray/D/Z0/Y0" instance=ExtResource("12_oded7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.182344, 0.485096, 0)
+
+[node name="Detector2" parent="LightArray/D/Z0/Y0" instance=ExtResource("12_oded7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0784516, 0.479148, 0)
+xval = 1
+
+[node name="Y1" type="Node3D" parent="LightArray/D/Z0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.474743, 0)
+script = ExtResource("10_ut2de")
+axis = 1
+
+[node name="Detector" parent="LightArray/D/Z0/Y1" instance=ExtResource("12_oded7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.196936, 0, 0)
+
+[node name="Detector2" parent="LightArray/D/Z0/Y1" instance=ExtResource("12_oded7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.082906, 0, 0)
+xval = 1
 
 [node name="Z1" type="Node3D" parent="LightArray/D"]
-metadata/z = 0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.227471)
+script = ExtResource("10_ut2de")
+axis = 1
+
+[node name="Y0" type="Node3D" parent="LightArray/D/Z1"]
+script = ExtResource("10_ut2de")
+
+[node name="Detector" parent="LightArray/D/Z1/Y0" instance=ExtResource("12_oded7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.173847, 0.292931, 0.0156495)
+
+[node name="Detector2" parent="LightArray/D/Z1/Y0" instance=ExtResource("12_oded7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0701506, 0.277128, 0)
+xval = 1
 
 [node name="Y1" type="Node3D" parent="LightArray/D/Z1"]
-metadata/y = 0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.281191, 0)
+script = ExtResource("10_ut2de")
+axis = 1
 
-[node name="X1" type="Node3D" parent="LightArray/D/Z1/Y1"]
-metadata/x = 0
+[node name="Detector" parent="LightArray/D/Z1/Y1" instance=ExtResource("12_oded7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.175713, 0.213919, 0)
 
-[node name="TestDetector" type="StaticBody3D" parent="LightArray/D/Z1/Y1/X1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.23557, 2.86985, -8.33003)
-script = ExtResource("12_jjb5f")
+[node name="Detector2" parent="LightArray/D/Z1/Y1" instance=ExtResource("12_oded7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0683921, 0.190559, 0)
+xval = 1
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LightArray/D/Z1/Y1/X1/TestDetector"]
-shape = SubResource("SphereShape3D_w38ev")
+[node name="NewD" type="Node3D" parent="LightArray"]
+visible = false
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="LightArray/D/Z1/Y1/X1/TestDetector"]
-mesh = SubResource("SphereMesh_25r7r")
+[node name="Z0" type="Node3D" parent="LightArray/NewD"]
+script = ExtResource("10_ut2de")
 
-[node name="TestDetector2" type="StaticBody3D" parent="LightArray/D/Z1/Y1/X1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.85024, -8.33003)
-script = ExtResource("12_jjb5f")
+[node name="Y0" type="Node3D" parent="LightArray/NewD/Z0"]
+script = ExtResource("10_ut2de")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LightArray/D/Z1/Y1/X1/TestDetector2"]
-shape = SubResource("SphereShape3D_w38ev")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="LightArray/D/Z1/Y1/X1/TestDetector2"]
-mesh = SubResource("SphereMesh_25r7r")
-
+[connection signal="body_entered" from="XROrigin3D/LeftController/Dummy2" to="XROrigin3D/LeftController/Dummy2" method="_on_body_entered"]
+[connection signal="body_exited" from="XROrigin3D/LeftController/Dummy2" to="XROrigin3D/LeftController/Dummy2" method="_on_body_exited"]
 [connection signal="body_entered" from="XROrigin3D/RightController/Dummy" to="XROrigin3D/RightController/Dummy" method="_on_body_entered"]
 [connection signal="body_exited" from="XROrigin3D/RightController/Dummy" to="XROrigin3D/RightController/Dummy" method="_on_body_exited"]

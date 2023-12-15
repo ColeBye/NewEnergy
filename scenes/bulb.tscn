@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfdggtcwfu06k"]
+
+[ext_resource type="Script" path="res://scripts/bulb.gd" id="1_py5jh"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_ii0cm"]
+radius = 0.2
+height = 0.4
+radial_segments = 8
+rings = 4
+
+[node name="Bulb" type="MeshInstance3D"]
+mesh = SubResource("SphereMesh_ii0cm")
+script = ExtResource("1_py5jh")

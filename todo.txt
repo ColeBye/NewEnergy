@@ -31,5 +31,23 @@ VR Final Proj:
 
 
 Tasks:
-- first test of logic for lights
 - build up physical mini world and bulb array
+- maybe instead of just exit color blank color, toggle visibility too
+- set up proper collision masks
+- bug if 2 in and one leaves it turns off.  just have a counter var
+
+
+Each bulb must have:
+- reduce mesh rings/radials, 4/8
+- radius/height = 
+- xval
+- bulb script attached
+- Other mat properties: 
+
+Each detector must have:
+- proper size
+- set up collision masks
+- no mesh
+- script added
+- ray pickable off
+-xval
