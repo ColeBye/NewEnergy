@@ -12,7 +12,7 @@ func _ready():
 	yval = get_parent().axis
 	zval = get_parent().get_parent().axis
 	
-	detector_idx = (zval * 20 + yval) * 25 + xval
+	detector_idx = (zval * 16 + yval) * 26 + xval
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

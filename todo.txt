@@ -1,16 +1,10 @@
 VR Final Proj:
 - Create World Environment
-    - Box world
-    - DJ stage middle
-    - 3D array of light balls
     - Spawn room 
     - Mini world 
-    - shapes(detectors)
 - Light collision logic
-    - Do a stress test for lots of area3d
     - Another type of logic for LookAt spotlight/laser
     - How to handle multiple shapes at same point (Lerp/avg colors?)
-- Add basic movement, non physics based.
 - UI for DJ to control lighting
     - Interactive color change
         - 3D HSV space with click to lock in color
@@ -24,30 +18,21 @@ VR Final Proj:
     - Shape that take clicks and creates outward pulse
     - Start with basic shapes spawned. extra have shape spawner
     - Be able to move Mini world
-    - Make world look nicer (video players for fx?)
+    - Make world look nicer (video players for fx?), make bulbs/lighting more realisting
     - Strings connecting the balls to rafters
     - actual dj deck asset
     - lights are unoptimal, so sneak in a few actual responsive lights
 
 
 Tasks:
-- build up physical mini world and bulb array
-- maybe instead of just exit color blank color, toggle visibility too
-- set up proper collision masks
 - bug if 2 in and one leaves it turns off.  just have a counter var
+- add more bars to mini world to complete Box
+- spawn room
+- table for more shape types
+- start basic UI
+- look into HSV color changing modes
 
 
-Each bulb must have:
-- reduce mesh rings/radials, 4/8
-- radius/height = 
-- xval
-- bulb script attached
-- Other mat properties: 
 
-Each detector must have:
-- proper size
-- set up collision masks
-- no mesh
-- script added
-- ray pickable off
--xval
+
+

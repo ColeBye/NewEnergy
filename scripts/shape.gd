@@ -1,8 +1,8 @@
 extends Area3D
 
 @onready var light_array = get_node("/root/Main/LightArray")
-var color = "GREEN" #placeholder data
-var blank_color = "BLACK"
+var color = Color.GREEN #placeholder data
+var blank_color = Color.BLACK
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

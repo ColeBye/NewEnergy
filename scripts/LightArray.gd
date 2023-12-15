@@ -1,12 +1,12 @@
 extends Node3D
 
 var arr = []
-var num_bulbs = 20 * 25 * 25
+var num_bulbs = 16 * 26 * 26
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	for i in num_bulbs:
-		arr.append("BLACK")
+		arr.append(Color.BLACK)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
