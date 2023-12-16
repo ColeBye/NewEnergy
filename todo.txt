@@ -1,10 +1,6 @@
-VR Final Proj:
-- Create World Environment
-    - Spawn room 
-    - Mini world 
+VR Final Proj: 
 - Light collision logic
     - Another type of logic for LookAt spotlight/laser
-    - How to handle multiple shapes at same point (Lerp/avg colors?)
 - UI for DJ to control lighting
     - Interactive color change
         - 3D HSV space with click to lock in color
@@ -22,16 +18,24 @@ VR Final Proj:
     - Strings connecting the balls to rafters
     - actual dj deck asset
     - lights are unoptimal, so sneak in a few actual responsive lights
+    - bug for handling multiple objects at one spot
 
 
 Tasks:
-- bug if 2 in and one leaves it turns off.  just have a counter var
-- add more bars to mini world to complete Box
-- spawn room
 - table for more shape types
 - start basic UI
 - look into HSV color changing modes
+- bug player colliding with detector box
 
+Potential optimnizations:
+- increase margin in detector collider
+- shapes pickup are static instead of rigid
+
+
+Credits:
+Inspiration - Four Tet
+Biases - VRChat
+Movement/Grabbing - Godot XR Tools
 
 
 

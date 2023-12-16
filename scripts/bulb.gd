@@ -41,22 +41,18 @@ func _ready():
 
 	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 
-
-
 	new_mesh.material = mat
 	self.mesh = new_mesh
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	#self.mesh.material.albedo_color = light_array.get_light_color(bulb_idx)
 	var color = light_array.get_light_color(bulb_idx)
 	if color != Color.BLACK:
-		color.a = 0.5
 		self.mesh.material.emission = color
 		blk = false
 	elif blk == false:
 		self.mesh.material.emission = Color.BLACK
-		self.mesh.material.albedo_color = Color(0.7, 0.7, 0.7, 0.6)
+		self.mesh.material.albedo_color = Color(0.7, 0.7, 0.7, 0.5)
 		blk = true
 

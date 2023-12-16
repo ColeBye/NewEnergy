@@ -1,5 +1,7 @@
 extends StaticBody3D
 
+var hand = false
+
 @onready var light_array = get_node("/root/Main/LightArray")
 var detector_idx = 0
 @export var xval = 0
