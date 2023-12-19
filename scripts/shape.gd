@@ -20,7 +20,7 @@ func _on_body_entered(body:Node3D): #body is the detector it touched
 	if body is RigidBody3D:
 		return
 
-	light_array.set_light_color(color, body.detector_idx)
+	light_array.set_light_color(color, body.detector_idx, true)
 	# else:
 	# 	print(body)
 	
@@ -29,7 +29,7 @@ func _on_body_exited(body:Node3D):
 	#if !body.hand:
 	if body is RigidBody3D:
 		return
-	light_array.set_light_color(blank_color, body.detector_idx)
+	light_array.set_light_color(color, body.detector_idx, false)
 	
 
 func set_shape_color(new_color):

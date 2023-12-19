@@ -7,32 +7,26 @@ VR Final Proj:
     - Some way to spin objects around the dj
 - Extra:
     - Custom songs, video player, vp in 3d lights
-    - Audio link
     - Make world look nicer (video players for fx?), make bulbs/lighting more realistic
     - actual dj deck asset
     - lights are unoptimal, so sneak in a few actual responsive lights
     - bug for handling multiple objects at one spot
 
 
-Tasks:
-- table for more shape types
-- start basic UI
-- look into HSV color changing modes
-- bug player colliding with detector box
 
 Remaining: 
 * Some audio playing 
 * variety of colors
 * fix collision bug
-* change multi light behavior to keep og color
- - find a way to check if leaving color = active color, list appends/removes, allows for lerping/avging
 - make world look a bit nicer
 - highlight selected objects/adjust selection radius
+
+
+
 
 Potential optimnizations:
 - increase margin in detector collider
 - shapes pickup are static instead of rigid
-
 
 Credits:
 Inspiration - Four Tet
