@@ -1,6 +1,4 @@
 VR Final Proj: 
-- Light collision logic
-    - Another type of logic for LookAt spotlight/laser
 - UI for DJ to control lighting
     - Interactive color change
         - 3D HSV space with click to lock in color
@@ -10,12 +8,7 @@ VR Final Proj:
 - Extra:
     - Custom songs, video player, vp in 3d lights
     - Audio link
-    - Change waviness of a object
-    - Shape that take clicks and creates outward pulse
-    - Start with basic shapes spawned. extra have shape spawner
-    - Be able to move Mini world
-    - Make world look nicer (video players for fx?), make bulbs/lighting more realisting
-    - Strings connecting the balls to rafters
+    - Make world look nicer (video players for fx?), make bulbs/lighting more realistic
     - actual dj deck asset
     - lights are unoptimal, so sneak in a few actual responsive lights
     - bug for handling multiple objects at one spot
@@ -26,6 +19,15 @@ Tasks:
 - start basic UI
 - look into HSV color changing modes
 - bug player colliding with detector box
+
+Remaining: 
+* Some audio playing 
+* variety of colors
+* fix collision bug
+* change multi light behavior to keep og color
+ - find a way to check if leaving color = active color, list appends/removes, allows for lerping/avging
+- make world look a bit nicer
+- highlight selected objects/adjust selection radius
 
 Potential optimnizations:
 - increase margin in detector collider

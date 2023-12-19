@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://cd48vg13uv5t"]
+[gd_scene load_steps=82 format=3 uid="uid://cd48vg13uv5t"]
 
 [ext_resource type="PackedScene" uid="uid://b4kad2kuba1yn" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_hand_low.tscn" id="1_jrngj"]
 [ext_resource type="Script" path="res://scripts/initialize.gd" id="1_ocdcg"]
@@ -119,22 +119,6 @@ albedo_color = Color(0, 0.352941, 0.239216, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5q65i"]
 albedo_color = Color(0, 0.352941, 0.239216, 1)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_vdr4u"]
-size = Vector3(0.1, 0.1, 0.1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_slxew"]
-albedo_color = Color(0.721569, 0.407843, 0.0588235, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_r2sqv"]
-material = SubResource("StandardMaterial3D_slxew")
-size = Vector3(0.1, 0.1, 0.1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_5483o"]
-size = Vector3(0.1, 0.1, 0.1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_q2q03"]
-size = Vector3(0.1, 0.1, 0.1)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a2l1y"]
 albedo_color = Color(0, 0.752941, 0.380392, 1)
 
@@ -144,6 +128,79 @@ size = Vector3(0.1, 0.1, 0.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ensqf"]
 size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q2q03"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vdr4u"]
+size = Vector3(0.6, 0.02, 0.6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_slxew"]
+albedo_color = Color(0.721569, 0.407843, 0.0588235, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_r2sqv"]
+material = SubResource("StandardMaterial3D_slxew")
+size = Vector3(0.6, 0.02, 0.6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5483o"]
+size = Vector3(0.6, 0.02, 0.6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_60e5g"]
+albedo_color = Color(0.545098, 0, 0.545098, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_drl3j"]
+material = SubResource("StandardMaterial3D_60e5g")
+radius = 0.1
+height = 0.2
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_s18g6"]
+radius = 0.1
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ecjt5"]
+radius = 0.1
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_p00cx"]
+radius = 0.03
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5a00r"]
+albedo_color = Color(0.74902, 0, 0.239216, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_7sggt"]
+material = SubResource("StandardMaterial3D_5a00r")
+radius = 0.03
+height = 0.06
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_v44kp"]
+radius = 0.03
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_07g2c"]
+radius = 0.02
+height = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3konq"]
+albedo_color = Color(0.109804, 0, 0.956863, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_2ut1x"]
+material = SubResource("StandardMaterial3D_3konq")
+radius = 0.02
+height = 0.1
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rtmso"]
+radius = 0.02
+height = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4tpjk"]
+albedo_color = Color(1, 0.941176, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_db05d"]
+material = SubResource("StandardMaterial3D_4tpjk")
+size = Vector3(0.02, 0.6, 0.02)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fiwpg"]
+size = Vector3(0.02, 0.6, 0.02)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t0qsu"]
+size = Vector3(0.02, 0.6, 0.02)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7pn47"]
 shading_mode = 2
@@ -344,6 +401,7 @@ strafe = true
 
 [node name="FunctionPickup" parent="XROrigin3D/LeftController" instance=ExtResource("6_3tyiv")]
 action_button_action = "grip_click"
+grab_distance = 0.15
 grab_collision_mask = 294912
 ranged_collision_mask = 32768
 
@@ -358,61 +416,152 @@ hand_material_override = SubResource("StandardMaterial3D_5q65i")
 turn_mode = 2
 
 [node name="FunctionPickup" parent="XROrigin3D/RightController" instance=ExtResource("6_3tyiv")]
+grab_distance = 0.15
 grab_collision_mask = 294912
 ranged_collision_mask = 32768
 
 [node name="PlayerBody" parent="XROrigin3D" instance=ExtResource("5_5y3fa")]
+collision_mask = 1
+player_radius = 0.05
+push_rigid_bodies = false
 
 [node name="Shapes" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)
 
-[node name="S2" type="RigidBody3D" parent="Shapes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.06464, 2.16249, 0)
+[node name="Cube" type="RigidBody3D" parent="Shapes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.86712, 2.29264, 0.0666494)
 collision_layer = 32768
 collision_mask = 32768
 freeze = true
 script = ExtResource("10_crwt2")
 picked_up_layer = 98304
 
-[node name="Dummy2" type="Area3D" parent="Shapes/S2"]
-transform = Transform3D(-0.99821, 0, -0.0598116, 0, 1, 0, 0.0598116, 0, -0.99821, 0, 0, 0)
-collision_mask = 49153
+[node name="Area" type="Area3D" parent="Shapes/Cube"]
+collision_layer = 0
+collision_mask = 49152
 script = ExtResource("7_2r3p2")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Shapes/S2/Dummy2"]
-transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 0, 3.72529e-09, 0, 1, 0, 0, 0)
-shape = SubResource("BoxShape3D_vdr4u")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Shapes/S2/Dummy2"]
-transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 0, 3.72529e-09, 0, 1, 0, 0, 0)
-mesh = SubResource("BoxMesh_r2sqv")
-skeleton = NodePath("")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Shapes/S2"]
-shape = SubResource("BoxShape3D_5483o")
-
-[node name="S1" type="RigidBody3D" parent="Shapes"]
-collision_layer = 32768
-collision_mask = 32768
-freeze = true
-script = ExtResource("10_crwt2")
-picked_up_layer = 98304
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Shapes/S1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.07321, 2.25604, 0)
-shape = SubResource("BoxShape3D_q2q03")
-
-[node name="Dummy" type="Area3D" parent="Shapes/S1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.07321, 2.25604, 0)
-collision_mask = 49153
-script = ExtResource("7_2r3p2")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Shapes/S1/Dummy"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Shapes/Cube/Area"]
 mesh = SubResource("BoxMesh_kbtah")
 skeleton = NodePath("")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Shapes/S1/Dummy"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Shapes/Cube/Area"]
 shape = SubResource("BoxShape3D_ensqf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Shapes/Cube"]
+shape = SubResource("BoxShape3D_q2q03")
+
+[node name="Rect" type="RigidBody3D" parent="Shapes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.24155, 2.16249, 0)
+collision_layer = 32768
+collision_mask = 32768
+freeze = true
+script = ExtResource("10_crwt2")
+picked_up_layer = 98304
+
+[node name="Area" type="Area3D" parent="Shapes/Rect"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+collision_layer = 0
+collision_mask = 49152
+script = ExtResource("7_2r3p2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Shapes/Rect/Area"]
+shape = SubResource("BoxShape3D_vdr4u")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Shapes/Rect/Area"]
+mesh = SubResource("BoxMesh_r2sqv")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Shapes/Rect"]
+shape = SubResource("BoxShape3D_5483o")
+
+[node name="Sphere" type="RigidBody3D" parent="Shapes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.627637, 2.34833, 0)
+collision_layer = 32768
+collision_mask = 32768
+freeze = true
+script = ExtResource("10_crwt2")
+picked_up_layer = 98304
+
+[node name="Area3D" type="Area3D" parent="Shapes/Sphere"]
+collision_layer = 0
+collision_mask = 49152
+script = ExtResource("7_2r3p2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Shapes/Sphere/Area3D"]
+mesh = SubResource("SphereMesh_drl3j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Shapes/Sphere/Area3D"]
+shape = SubResource("SphereShape3D_s18g6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Shapes/Sphere"]
+shape = SubResource("SphereShape3D_ecjt5")
+
+[node name="Egg" type="RigidBody3D" parent="Shapes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25562, 2.41225, -0.0324392)
+collision_layer = 32768
+collision_mask = 32768
+freeze = true
+script = ExtResource("10_crwt2")
+picked_up_layer = 98304
+
+[node name="Area" type="Area3D" parent="Shapes/Egg"]
+collision_layer = 0
+collision_mask = 49152
+script = ExtResource("7_2r3p2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Shapes/Egg/Area"]
+shape = SubResource("SphereShape3D_p00cx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Shapes/Egg/Area"]
+mesh = SubResource("SphereMesh_7sggt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Shapes/Egg"]
+shape = SubResource("SphereShape3D_v44kp")
+
+[node name="Pill" type="RigidBody3D" parent="Shapes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.700516, 2.41826, 0)
+collision_layer = 32768
+collision_mask = 32768
+freeze = true
+script = ExtResource("10_crwt2")
+picked_up_layer = 98304
+
+[node name="Area" type="Area3D" parent="Shapes/Pill"]
+collision_layer = 0
+collision_mask = 49152
+script = ExtResource("7_2r3p2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Shapes/Pill/Area"]
+shape = SubResource("CapsuleShape3D_07g2c")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Shapes/Pill/Area"]
+mesh = SubResource("CapsuleMesh_2ut1x")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Shapes/Pill"]
+shape = SubResource("CapsuleShape3D_rtmso")
+
+[node name="Bar" type="RigidBody3D" parent="Shapes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.922822, 2.58162, -0.0698862)
+collision_layer = 32768
+collision_mask = 32768
+freeze = true
+script = ExtResource("10_crwt2")
+picked_up_layer = 98304
+
+[node name="Area" type="Area3D" parent="Shapes/Bar"]
+collision_layer = 0
+collision_mask = 49152
+script = ExtResource("7_2r3p2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Shapes/Bar/Area"]
+mesh = SubResource("BoxMesh_db05d")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Shapes/Bar/Area"]
+shape = SubResource("BoxShape3D_fiwpg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Shapes/Bar"]
+shape = SubResource("BoxShape3D_t0qsu")
 
 [node name="LightArray" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
@@ -99272,7 +99421,15 @@ mesh = SubResource("BoxMesh_7hea5")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.32, 0)
 mesh = SubResource("BoxMesh_7hea5")
 
-[connection signal="body_entered" from="Shapes/S2/Dummy2" to="Shapes/S2/Dummy2" method="_on_body_entered"]
-[connection signal="body_exited" from="Shapes/S2/Dummy2" to="Shapes/S2/Dummy2" method="_on_body_exited"]
-[connection signal="body_entered" from="Shapes/S1/Dummy" to="Shapes/S1/Dummy" method="_on_body_entered"]
-[connection signal="body_exited" from="Shapes/S1/Dummy" to="Shapes/S1/Dummy" method="_on_body_exited"]
+[connection signal="body_entered" from="Shapes/Cube/Area" to="Shapes/Cube/Area" method="_on_body_entered"]
+[connection signal="body_exited" from="Shapes/Cube/Area" to="Shapes/Cube/Area" method="_on_body_exited"]
+[connection signal="body_entered" from="Shapes/Rect/Area" to="Shapes/Rect/Area" method="_on_body_entered"]
+[connection signal="body_exited" from="Shapes/Rect/Area" to="Shapes/Rect/Area" method="_on_body_exited"]
+[connection signal="body_entered" from="Shapes/Sphere/Area3D" to="Shapes/Sphere/Area3D" method="_on_body_entered"]
+[connection signal="body_exited" from="Shapes/Sphere/Area3D" to="Shapes/Sphere/Area3D" method="_on_body_exited"]
+[connection signal="body_entered" from="Shapes/Egg/Area" to="Shapes/Egg/Area" method="_on_body_entered"]
+[connection signal="body_exited" from="Shapes/Egg/Area" to="Shapes/Egg/Area" method="_on_body_exited"]
+[connection signal="body_entered" from="Shapes/Pill/Area" to="Shapes/Pill/Area" method="_on_body_entered"]
+[connection signal="body_exited" from="Shapes/Pill/Area" to="Shapes/Pill/Area" method="_on_body_exited"]
+[connection signal="body_entered" from="Shapes/Bar/Area" to="Shapes/Bar/Area" method="_on_body_entered"]
+[connection signal="body_exited" from="Shapes/Bar/Area" to="Shapes/Bar/Area" method="_on_body_exited"]
