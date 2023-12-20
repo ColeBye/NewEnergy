@@ -11,6 +11,7 @@ VR Final Proj:
     - actual dj deck asset
     - lights are unoptimal, so sneak in a few actual responsive lights
     - bug for handling multiple objects at one spot
+    - Lab color space for avging
 
 
 
@@ -19,7 +20,8 @@ Remaining:
 * variety of colors
 * fix collision bug
 - make world look a bit nicer
-- highlight selected objects/adjust selection radius
+- UI for mode/song switching
+- basic attempt at animating shapes
 
 
 

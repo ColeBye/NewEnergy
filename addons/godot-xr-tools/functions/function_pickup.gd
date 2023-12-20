@@ -3,7 +3,7 @@
 class_name XRToolsFunctionPickup
 extends Node3D
 
-
+@onready var color_picker = get_node("/root/Main/ColorPicker")
 ## XR Tools Function Pickup Script
 ##
 ## This script implements picking up of objects. Most pickable
@@ -378,6 +378,8 @@ func drop_object() -> void:
 	picked_up_object = null
 	emit_signal("has_dropped")
 
+	color_picker.grab_state()
+
 
 func _pick_up_object(target: Node3D) -> void:
 	# check if already holding an object
@@ -407,6 +409,8 @@ func _pick_up_object(target: Node3D) -> void:
 	if is_instance_valid(picked_up_object):
 		picked_up_object.request_highlight(self, false)
 		emit_signal("has_picked_up", picked_up_object)
+	
+	color_picker.grab_state()
 
 
 func _on_button_pressed(p_button) -> void:

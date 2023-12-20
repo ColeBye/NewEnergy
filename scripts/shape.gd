@@ -34,4 +34,5 @@ func _on_body_exited(body:Node3D):
 
 func set_shape_color(new_color):
 	color = new_color
+	#also set albedo of mesh
 

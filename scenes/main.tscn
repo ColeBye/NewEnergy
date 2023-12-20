@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=3 uid="uid://cd48vg13uv5t"]
+[gd_scene load_steps=91 format=3 uid="uid://cd48vg13uv5t"]
 
 [ext_resource type="PackedScene" uid="uid://b4kad2kuba1yn" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_hand_low.tscn" id="1_jrngj"]
 [ext_resource type="Script" path="res://scripts/initialize.gd" id="1_ocdcg"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://scripts/axis.gd" id="10_ut2de"]
 [ext_resource type="Script" path="res://scripts/bulb.gd" id="11_ggrom"]
 [ext_resource type="PackedScene" uid="uid://cmlre70aowmpu" path="res://scenes/detector.tscn" id="12_oded7"]
+[ext_resource type="Script" path="res://scripts/colorpicker.gd" id="15_us3sp"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0uoyk"]
 sky_top_color = Color(0.0470588, 0.121569, 0.392157, 1)
@@ -256,6 +257,44 @@ albedo_color = Color(0, 0, 0, 1)
 material = SubResource("StandardMaterial3D_16pau")
 size = Vector3(0.52, 0.01, 0.01)
 
+[sub_resource type="Gradient" id="Gradient_hqnab"]
+colors = PackedColorArray(0, 0, 0, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ql1wt"]
+gradient = SubResource("Gradient_hqnab")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aeq1g"]
+transparency = 1
+albedo_color = Color(0.639216, 0.639216, 0.639216, 0.615686)
+rim_tint = 1.0
+rim_texture = SubResource("GradientTexture1D_ql1wt")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_4fyay"]
+material = SubResource("StandardMaterial3D_aeq1g")
+top_radius = 0.3
+bottom_radius = 0.3
+height = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7kdcw"]
+albedo_color = Color(0, 0, 0, 1)
+rim_tint = 0.47
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_sxdho"]
+material = SubResource("StandardMaterial3D_7kdcw")
+top_radius = 0.3
+bottom_radius = 0.3
+height = 0.01
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cxsgo"]
+transparency = 1
+albedo_color = Color(0.701961, 0.701961, 0.701961, 0.501961)
+emission_enabled = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_5lgqj"]
+material = SubResource("StandardMaterial3D_cxsgo")
+radius = 0.05
+height = 0.1
+
 [node name="Main" type="Node3D"]
 script = ExtResource("1_ocdcg")
 
@@ -460,7 +499,6 @@ script = ExtResource("10_crwt2")
 picked_up_layer = 98304
 
 [node name="Area" type="Area3D" parent="Shapes/Rect"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 collision_layer = 0
 collision_mask = 49152
 script = ExtResource("7_2r3p2")
@@ -483,15 +521,15 @@ freeze = true
 script = ExtResource("10_crwt2")
 picked_up_layer = 98304
 
-[node name="Area3D" type="Area3D" parent="Shapes/Sphere"]
+[node name="Area" type="Area3D" parent="Shapes/Sphere"]
 collision_layer = 0
 collision_mask = 49152
 script = ExtResource("7_2r3p2")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Shapes/Sphere/Area3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Shapes/Sphere/Area"]
 mesh = SubResource("SphereMesh_drl3j")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Shapes/Sphere/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Shapes/Sphere/Area"]
 shape = SubResource("SphereShape3D_s18g6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Shapes/Sphere"]
@@ -99421,12 +99459,29 @@ mesh = SubResource("BoxMesh_7hea5")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.32, 0)
 mesh = SubResource("BoxMesh_7hea5")
 
+[node name="ColorPicker" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.19702, -12.485)
+script = ExtResource("15_us3sp")
+
+[node name="Cyl" type="MeshInstance3D" parent="ColorPicker"]
+mesh = SubResource("CylinderMesh_4fyay")
+
+[node name="BasePlate" type="MeshInstance3D" parent="ColorPicker"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+mesh = SubResource("CylinderMesh_sxdho")
+
+[node name="Sample" type="MeshInstance3D" parent="ColorPicker"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.397051, 0)
+mesh = SubResource("SphereMesh_5lgqj")
+
+[connection signal="button_pressed" from="XROrigin3D/LeftController" to="ColorPicker" method="_on_left_controller_button_pressed"]
+[connection signal="button_pressed" from="XROrigin3D/RightController" to="ColorPicker" method="_on_right_controller_button_pressed"]
 [connection signal="body_entered" from="Shapes/Cube/Area" to="Shapes/Cube/Area" method="_on_body_entered"]
 [connection signal="body_exited" from="Shapes/Cube/Area" to="Shapes/Cube/Area" method="_on_body_exited"]
 [connection signal="body_entered" from="Shapes/Rect/Area" to="Shapes/Rect/Area" method="_on_body_entered"]
 [connection signal="body_exited" from="Shapes/Rect/Area" to="Shapes/Rect/Area" method="_on_body_exited"]
-[connection signal="body_entered" from="Shapes/Sphere/Area3D" to="Shapes/Sphere/Area3D" method="_on_body_entered"]
-[connection signal="body_exited" from="Shapes/Sphere/Area3D" to="Shapes/Sphere/Area3D" method="_on_body_exited"]
+[connection signal="body_entered" from="Shapes/Sphere/Area" to="Shapes/Sphere/Area" method="_on_body_entered"]
+[connection signal="body_exited" from="Shapes/Sphere/Area" to="Shapes/Sphere/Area" method="_on_body_exited"]
 [connection signal="body_entered" from="Shapes/Egg/Area" to="Shapes/Egg/Area" method="_on_body_entered"]
 [connection signal="body_exited" from="Shapes/Egg/Area" to="Shapes/Egg/Area" method="_on_body_exited"]
 [connection signal="body_entered" from="Shapes/Pill/Area" to="Shapes/Pill/Area" method="_on_body_entered"]
