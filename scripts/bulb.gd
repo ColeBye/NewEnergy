@@ -24,12 +24,6 @@ func _ready():
 	new_mesh.radial_segments = 8
 	new_mesh.rings = 4
 
-	# var new_mesh = BoxMesh.new()
-	# new_mesh.size.x = 0.1
-	# new_mesh.size.y = 0.1
-	# new_mesh.size.z = 0.1
-	
-
 	var mat = StandardMaterial3D.new()
 	mat.albedo_color = Color(0.7, 0.7, 0.7, 0.5)
 	# set other mat params

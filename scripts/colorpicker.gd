@@ -22,12 +22,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	#check to change state
-	# if obj grabbed and hand/obj near cyl, then changing
-	# grabbing may not be necessary unless can be changed on pickup on other code to optimized constant hand obj search(fuc pup methods for pickup/drop)
 
 	if state == State.CHANGING:
-		#calculate/change sample color
 		$Sample.visible = true
 		if self.global_position.distance_to(left_hand.global_position) > 0.5 and self.global_position.distance_to(right_hand.global_position) > 0.5:
 			state = State.GRABBING
@@ -40,7 +36,6 @@ func _process(delta):
 		if self.global_position.distance_to(left_hand.global_position) < 0.5 or self.global_position.distance_to(right_hand.global_position) < 0.5:
 			state = State.CHANGING
 	else:
-		#just empty, state to grabbing should be done in grab code
 		$Sample.visible = false
 
 #make helper func for checking hsv of an obj. make sure to bind min and max values
@@ -64,9 +59,6 @@ func find_hsv():
 
 	ref_pt = Vector3(0, rel_pos.y, 0.3)
 	var hue = (rad_to_deg(Vector2(0,0).angle_to_point(Vector2(rel_pos.x, rel_pos.z))) + 180) / 360
-	#ref_pt.x, ref_pt.z
-	#rel_pos.x, rel_pos.z
-
 	return Color.from_hsv(hue, sat, val, 1.0)
 
 func grab_state():
@@ -81,19 +73,13 @@ func grab_state():
 
 func _on_left_controller_button_pressed(name:String):
 	if name == "trigger_click" and state == State.CHANGING:
-		
-		#set held obj color to color var
-		#print(left_grabbed.get_node("Area/MeshInstance3D"))
 		left_grabbed.get_node("Area/MeshInstance3D").mesh.material.albedo_color = sample_color
 		left_grabbed.get_node("Area").set_shape_color(sample_color)
-		#left_grabbed = null
 
 
 	
 func _on_right_controller_button_pressed(name:String):
 	if name == "trigger_click" and state == State.CHANGING:
-		#print(right_grabbed.get_node("Area/MeshInstance3D"))
 		right_grabbed.get_node("Area/MeshInstance3D").mesh.material.albedo_color = sample_color
 		right_grabbed.get_node("Area").set_shape_color(sample_color)
-		#right_grabbed = null
 

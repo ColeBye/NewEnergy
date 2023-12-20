@@ -1,27 +1,18 @@
 VR Final Proj: 
 - UI for DJ to control lighting
-    - Interactive color change
-        - 3D HSV space with click to lock in color
     - Pop up button UI for mode switching
     - Basic chill music selection
     - Some way to spin objects around the dj
 - Extra:
-    - Custom songs, video player, vp in 3d lights
     - Make world look nicer (video players for fx?), make bulbs/lighting more realistic
-    - actual dj deck asset
-    - lights are unoptimal, so sneak in a few actual responsive lights
-    - bug for handling multiple objects at one spot
-    - Lab color space for avging
-
-
 
 Remaining: 
 * Some audio playing 
-* variety of colors
 * fix collision bug
 - make world look a bit nicer
 - UI for mode/song switching
 - basic attempt at animating shapes
+- clean up code
 
 
 
@@ -34,6 +25,7 @@ Credits:
 Inspiration - Four Tet
 Biases - VRChat
 Movement/Grabbing - Godot XR Tools
+Music - Three Drums by Four Tet, https://www.youtube.com/watch?v=DGaKVLFNWzs
 
 
 
