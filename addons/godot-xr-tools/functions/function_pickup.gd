@@ -433,3 +433,15 @@ func _on_grip_pressed() -> void:
 func _on_grip_release() -> void:
 	if is_instance_valid(picked_up_object) and picked_up_object.press_to_hold:
 		drop_object()
+
+
+
+func _on_right_controller_button_pressed(name:String):
+	if picked_up_object and name == "by_button":
+		var obj = picked_up_object.get_node("Area")
+		obj.rotating = !obj.rotating
+
+func _on_left_controller_button_pressed(name:String):
+	if picked_up_object and name == "by_button":
+		var obj = picked_up_object.get_node("Area")
+		obj.rotating = !obj.rotating

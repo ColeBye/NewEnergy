@@ -454,7 +454,7 @@ grab_collision_mask = 294912
 ranged_collision_mask = 32768
 
 [node name="RightController" type="XRController3D" parent="XROrigin3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 1, 0)
+transform = Transform3D(1, 0, -1.11759e-08, 0, 1, 0, 1.11759e-08, 0, 1, 0.2, 0.0648036, 2.86102e-06)
 tracker = &"right_hand"
 
 [node name="RightHand" parent="XROrigin3D/RightController" instance=ExtResource("2_xiexc")]
@@ -523,7 +523,7 @@ skeleton = NodePath("")
 shape = SubResource("BoxShape3D_5483o")
 
 [node name="Rect2" type="RigidBody3D" parent="Shapes"]
-transform = Transform3D(-0.0207854, 0.999784, 0, -0.999784, -0.0207854, 0, 0, 0, 1, 2.44365, 2.32711, 0)
+transform = Transform3D(-0.0207854, 0.999784, 0, -0.999784, -0.0207854, 0, 0, 0, 1, 1.39606, 2.45284, 0)
 collision_layer = 32768
 collision_mask = 32768
 freeze = true
@@ -99516,7 +99516,9 @@ autoplay = true
 max_distance = 100.0
 script = ExtResource("17_ox1u0")
 
+[connection signal="button_pressed" from="XROrigin3D/LeftController" to="XROrigin3D/LeftController/FunctionPickup" method="_on_left_controller_button_pressed"]
 [connection signal="button_pressed" from="XROrigin3D/LeftController" to="ColorPicker" method="_on_left_controller_button_pressed"]
+[connection signal="button_pressed" from="XROrigin3D/RightController" to="XROrigin3D/RightController/FunctionPickup" method="_on_right_controller_button_pressed"]
 [connection signal="button_pressed" from="XROrigin3D/RightController" to="ColorPicker" method="_on_right_controller_button_pressed"]
 [connection signal="body_entered" from="Shapes/Cube/Area" to="Shapes/Cube/Area" method="_on_body_entered"]
 [connection signal="body_exited" from="Shapes/Cube/Area" to="Shapes/Cube/Area" method="_on_body_exited"]

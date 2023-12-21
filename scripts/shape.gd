@@ -4,6 +4,10 @@ extends Area3D
 var color = Color.GREEN 
 var blank_color = Color.BLACK
 @onready var parent_grab = get_parent()
+var rotating = false
+@onready var backup_pos = self.position
+@export var rotate_speed = 0.1
+var timer = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -13,7 +17,12 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	timer += delta
+	if rotating:
+		self.position.x = rotate_speed * sin(timer)
+		self.position.z = rotate_speed * cos(timer)
+	else:
+		self.position = backup_pos
 
 
 func _on_body_entered(body:Node3D): #body is the detector it touched
