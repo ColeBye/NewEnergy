@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=3 uid="uid://cd48vg13uv5t"]
+[gd_scene load_steps=95 format=3 uid="uid://cd48vg13uv5t"]
 
 [ext_resource type="PackedScene" uid="uid://b4kad2kuba1yn" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_hand_low.tscn" id="1_jrngj"]
 [ext_resource type="Script" path="res://scripts/initialize.gd" id="1_ocdcg"]
@@ -146,6 +146,13 @@ material = SubResource("StandardMaterial3D_slxew")
 size = Vector3(0.6, 0.02, 0.6)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5483o"]
+size = Vector3(0.6, 0.02, 0.6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qrjy5"]
+albedo_color = Color(0, 0.466667, 0.184314, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_thjdp"]
+material = SubResource("StandardMaterial3D_qrjy5")
 size = Vector3(0.6, 0.02, 0.6)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_60e5g"]
@@ -513,6 +520,29 @@ mesh = SubResource("BoxMesh_r2sqv")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Shapes/Rect"]
+shape = SubResource("BoxShape3D_5483o")
+
+[node name="Rect2" type="RigidBody3D" parent="Shapes"]
+transform = Transform3D(-0.0207854, 0.999784, 0, -0.999784, -0.0207854, 0, 0, 0, 1, 2.44365, 2.32711, 0)
+collision_layer = 32768
+collision_mask = 32768
+freeze = true
+script = ExtResource("10_crwt2")
+picked_up_layer = 98304
+
+[node name="Area" type="Area3D" parent="Shapes/Rect2"]
+collision_layer = 0
+collision_mask = 49152
+script = ExtResource("7_2r3p2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Shapes/Rect2/Area"]
+shape = SubResource("BoxShape3D_vdr4u")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Shapes/Rect2/Area"]
+mesh = SubResource("BoxMesh_thjdp")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Shapes/Rect2"]
 shape = SubResource("BoxShape3D_5483o")
 
 [node name="Sphere" type="RigidBody3D" parent="Shapes"]
@@ -99492,6 +99522,8 @@ script = ExtResource("17_ox1u0")
 [connection signal="body_exited" from="Shapes/Cube/Area" to="Shapes/Cube/Area" method="_on_body_exited"]
 [connection signal="body_entered" from="Shapes/Rect/Area" to="Shapes/Rect/Area" method="_on_body_entered"]
 [connection signal="body_exited" from="Shapes/Rect/Area" to="Shapes/Rect/Area" method="_on_body_exited"]
+[connection signal="body_entered" from="Shapes/Rect2/Area" to="Shapes/Rect2/Area" method="_on_body_entered"]
+[connection signal="body_exited" from="Shapes/Rect2/Area" to="Shapes/Rect2/Area" method="_on_body_exited"]
 [connection signal="body_entered" from="Shapes/Sphere/Area" to="Shapes/Sphere/Area" method="_on_body_entered"]
 [connection signal="body_exited" from="Shapes/Sphere/Area" to="Shapes/Sphere/Area" method="_on_body_exited"]
 [connection signal="body_entered" from="Shapes/Egg/Area" to="Shapes/Egg/Area" method="_on_body_entered"]
