@@ -3,6 +3,7 @@ extends Area3D
 @onready var light_array = get_node("/root/Main/LightArray")
 var color = Color.GREEN 
 var blank_color = Color.BLACK
+@onready var parent_grab = get_parent()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

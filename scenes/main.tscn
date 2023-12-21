@@ -1,4 +1,4 @@
-[gd_scene load_steps=91 format=3 uid="uid://cd48vg13uv5t"]
+[gd_scene load_steps=93 format=3 uid="uid://cd48vg13uv5t"]
 
 [ext_resource type="PackedScene" uid="uid://b4kad2kuba1yn" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_hand_low.tscn" id="1_jrngj"]
 [ext_resource type="Script" path="res://scripts/initialize.gd" id="1_ocdcg"]
@@ -15,6 +15,8 @@
 [ext_resource type="Script" path="res://scripts/bulb.gd" id="11_ggrom"]
 [ext_resource type="PackedScene" uid="uid://cmlre70aowmpu" path="res://scenes/detector.tscn" id="12_oded7"]
 [ext_resource type="Script" path="res://scripts/colorpicker.gd" id="15_us3sp"]
+[ext_resource type="AudioStream" uid="uid://m31yxppwaayw" path="res://sounds/ThreeDrums.mp3" id="16_7jo1u"]
+[ext_resource type="Script" path="res://scripts/AudioStreamPlayer.gd" id="17_ox1u0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0uoyk"]
 sky_top_color = Color(0.0470588, 0.121569, 0.392157, 1)
@@ -468,7 +470,7 @@ push_rigid_bodies = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)
 
 [node name="Cube" type="RigidBody3D" parent="Shapes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.86712, 2.29264, 0.0666494)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.27338, 2.1777, 0.0666494)
 collision_layer = 32768
 collision_mask = 32768
 freeze = true
@@ -491,7 +493,7 @@ shape = SubResource("BoxShape3D_ensqf")
 shape = SubResource("BoxShape3D_q2q03")
 
 [node name="Rect" type="RigidBody3D" parent="Shapes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.24155, 2.16249, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.09614, 2.05547, 0)
 collision_layer = 32768
 collision_mask = 32768
 freeze = true
@@ -514,7 +516,7 @@ skeleton = NodePath("")
 shape = SubResource("BoxShape3D_5483o")
 
 [node name="Sphere" type="RigidBody3D" parent="Shapes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.627637, 2.34833, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0603, 2.19469, 0)
 collision_layer = 32768
 collision_mask = 32768
 freeze = true
@@ -536,7 +538,7 @@ shape = SubResource("SphereShape3D_s18g6")
 shape = SubResource("SphereShape3D_ecjt5")
 
 [node name="Egg" type="RigidBody3D" parent="Shapes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25562, 2.41225, -0.0324392)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.32061, 2.1137, -0.189507)
 collision_layer = 32768
 collision_mask = 32768
 freeze = true
@@ -558,7 +560,7 @@ mesh = SubResource("SphereMesh_7sggt")
 shape = SubResource("SphereShape3D_v44kp")
 
 [node name="Pill" type="RigidBody3D" parent="Shapes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.700516, 2.41826, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.93314, 2.20493, -0.228804)
 collision_layer = 32768
 collision_mask = 32768
 freeze = true
@@ -580,7 +582,7 @@ mesh = SubResource("CapsuleMesh_2ut1x")
 shape = SubResource("CapsuleShape3D_rtmso")
 
 [node name="Bar" type="RigidBody3D" parent="Shapes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.922822, 2.58162, -0.0698862)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87173, 2.39177, 0.239449)
 collision_layer = 32768
 collision_mask = 32768
 freeze = true
@@ -56481,7 +56483,7 @@ script = ExtResource("11_ggrom")
 xval = 25
 
 [node name="D" type="Node3D" parent="LightArray"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.18953, 0.681395)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.539734, 2.18953, 1.5205)
 
 [node name="Z0" type="Node3D" parent="LightArray/D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.52)
@@ -99460,7 +99462,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.32, 0)
 mesh = SubResource("BoxMesh_7hea5")
 
 [node name="ColorPicker" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.19702, -12.485)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.57506, 2.29869, -8.10776)
 script = ExtResource("15_us3sp")
 
 [node name="Cyl" type="MeshInstance3D" parent="ColorPicker"]
@@ -99473,6 +99475,16 @@ mesh = SubResource("CylinderMesh_sxdho")
 [node name="Sample" type="MeshInstance3D" parent="ColorPicker"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.397051, 0)
 mesh = SubResource("SphereMesh_5lgqj")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.00678, -7.23841)
+stream = ExtResource("16_7jo1u")
+attenuation_model = 3
+volume_db = -7.027
+max_db = 6.0
+autoplay = true
+max_distance = 100.0
+script = ExtResource("17_ox1u0")
 
 [connection signal="button_pressed" from="XROrigin3D/LeftController" to="ColorPicker" method="_on_left_controller_button_pressed"]
 [connection signal="button_pressed" from="XROrigin3D/RightController" to="ColorPicker" method="_on_right_controller_button_pressed"]
