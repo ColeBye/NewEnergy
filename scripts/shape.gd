@@ -6,7 +6,8 @@ var blank_color = Color.BLACK
 @onready var parent_grab = get_parent()
 var rotating = false
 @onready var backup_pos = self.position
-@export var rotate_speed = 0.1
+@export var rotate_dist = 0.12
+@export var rotate_speed = 1.25
 var timer = 0
 
 # Called when the node enters the scene tree for the first time.
@@ -19,8 +20,9 @@ func _ready():
 func _process(delta):
 	timer += delta
 	if rotating:
-		self.position.x = rotate_speed * sin(timer)
-		self.position.z = rotate_speed * cos(timer)
+		self.position.x = rotate_dist * sin(timer*rotate_speed)
+		self.position.y = rotate_dist * cos(timer*rotate_speed)
+		#self.position.z = rotate_dist * cos(timer*rotate_speed)
 	else:
 		self.position = backup_pos
 

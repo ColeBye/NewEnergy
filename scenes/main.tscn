@@ -1,12 +1,15 @@
-[gd_scene load_steps=95 format=3 uid="uid://cd48vg13uv5t"]
+[gd_scene load_steps=104 format=3 uid="uid://cd48vg13uv5t"]
 
 [ext_resource type="PackedScene" uid="uid://b4kad2kuba1yn" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_hand_low.tscn" id="1_jrngj"]
 [ext_resource type="Script" path="res://scripts/initialize.gd" id="1_ocdcg"]
+[ext_resource type="Texture2D" uid="uid://ofa0o1s5aiwq" path="res://myAssets/pattern_0005.png" id="2_1op33"]
 [ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="2_umgjk"]
 [ext_resource type="Material" uid="uid://ska7mdhxp7vn" path="res://materials/main.tres" id="2_xd1r2"]
 [ext_resource type="PackedScene" uid="uid://l2n30mpbkdyw" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_hand_low.tscn" id="2_xiexc"]
+[ext_resource type="Texture2D" uid="uid://bqp1ho40buahb" path="res://myAssets/texture_04.png" id="3_a0vqf"]
 [ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="4_qyenj"]
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="5_5y3fa"]
+[ext_resource type="Texture2D" uid="uid://dgn0m2rvtlv60" path="res://myAssets/texture_03.png" id="5_ir8gk"]
 [ext_resource type="PackedScene" uid="uid://b4ysuy43poobf" path="res://addons/godot-xr-tools/functions/function_pickup.tscn" id="6_3tyiv"]
 [ext_resource type="Script" path="res://scripts/shape.gd" id="7_2r3p2"]
 [ext_resource type="Script" path="res://scripts/LightArray.gd" id="8_twsd0"]
@@ -37,17 +40,23 @@ glow_bloom = 0.5
 fog_light_color = Color(0.517647, 0.552941, 0.607843, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ys00x"]
-albedo_color = Color(0.113725, 0.113725, 0.117647, 1)
+albedo_color = Color(0.145098, 0.145098, 0.145098, 1)
+albedo_texture = ExtResource("2_1op33")
+uv1_scale = Vector3(35, 35, 35)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_lx8ug"]
 material = SubResource("StandardMaterial3D_ys00x")
 size = Vector2(60, 80)
+subdivide_width = 1
+subdivide_depth = 1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c1h15"]
 size = Vector3(60, 1, 80)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ho4hk"]
-albedo_color = Color(0.278431, 0.278431, 0.278431, 1)
+albedo_color = Color(0.592157, 0.592157, 0.592157, 1)
+albedo_texture = ExtResource("3_a0vqf")
+uv1_scale = Vector3(40, 10, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_1nask"]
 material = SubResource("StandardMaterial3D_ho4hk")
@@ -56,38 +65,39 @@ size = Vector3(60, 20, 0.5)
 [sub_resource type="BoxShape3D" id="BoxShape3D_hp8jw"]
 size = Vector3(60, 20, 0.5)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1hn2h"]
-albedo_color = Color(0.278431, 0.278431, 0.278431, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_01xp8"]
+albedo_color = Color(0.592157, 0.592157, 0.592157, 1)
+albedo_texture = ExtResource("3_a0vqf")
+uv1_scale = Vector3(20, 10, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_skqxm"]
-material = SubResource("StandardMaterial3D_1hn2h")
+material = SubResource("StandardMaterial3D_01xp8")
 size = Vector3(25, 20, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0l6ch"]
 size = Vector3(25, 20, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xrdmx"]
-albedo_color = Color(0.278431, 0.278431, 0.278431, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xwld7"]
+albedo_color = Color(0.592157, 0.592157, 0.592157, 1)
+albedo_texture = ExtResource("3_a0vqf")
+uv1_scale = Vector3(8, 10, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_jy1nc"]
-material = SubResource("StandardMaterial3D_xrdmx")
+[sub_resource type="BoxMesh" id="BoxMesh_arw4h"]
+material = SubResource("StandardMaterial3D_xwld7")
 size = Vector3(10, 20, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_imwcu"]
 size = Vector3(10, 20, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b3ekc"]
-albedo_color = Color(0.278431, 0.278431, 0.278431, 1)
-
 [sub_resource type="BoxMesh" id="BoxMesh_2k0db"]
-material = SubResource("StandardMaterial3D_b3ekc")
+material = SubResource("StandardMaterial3D_ho4hk")
 size = Vector3(1, 20, 60)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g7gtl"]
 size = Vector3(1, 20, 60)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x72jf"]
-albedo_color = Color(0.278431, 0.278431, 0.278431, 1)
+albedo_color = Color(0.152941, 0.152941, 0.152941, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_1hdxt"]
 material = SubResource("StandardMaterial3D_x72jf")
@@ -107,14 +117,20 @@ size = Vector3(5, 1, 2)
 material = ExtResource("2_xd1r2")
 size = Vector3(5, 1, 2)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gha7g"]
+albedo_color = Color(0.964706, 0.964706, 0.964706, 1)
+albedo_texture = ExtResource("5_ir8gk")
+uv1_scale = Vector3(15, 15, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_5s17v"]
+material = SubResource("StandardMaterial3D_gha7g")
 size = Vector3(5, 0.2, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_ruknb"]
-size = Vector3(0.2, 1, 1)
+size = Vector3(0.2, 1.5, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_4korl"]
-size = Vector2(5, 2)
+size = Vector2(5, 3)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kpmmg"]
 albedo_color = Color(0, 0.352941, 0.239216, 1)
@@ -304,6 +320,39 @@ material = SubResource("StandardMaterial3D_cxsgo")
 radius = 0.05
 height = 0.1
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o6ea0"]
+transparency = 1
+albedo_color = Color(0.686275, 0.686275, 0.686275, 0.564706)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_r3xgv"]
+material = SubResource("StandardMaterial3D_o6ea0")
+radius = 0.02
+height = 0.04
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fsjk8"]
+transparency = 1
+albedo_color = Color(0.686275, 0.686275, 0.686275, 1)
+emission_enabled = true
+emission = Color(0, 1, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_ou014"]
+material = SubResource("StandardMaterial3D_fsjk8")
+radius = 0.02
+height = 0.04
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2rjgu"]
+transparency = 1
+albedo_color = Color(0.690196, 0.690196, 0.690196, 1)
+emission_enabled = true
+emission = Color(0, 0, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_8eoua"]
+material = SubResource("StandardMaterial3D_2rjgu")
+radius = 0.02
+height = 0.04
+
 [node name="Main" type="Node3D"]
 script = ExtResource("1_ocdcg")
 
@@ -352,7 +401,7 @@ shape = SubResource("BoxShape3D_0l6ch")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 20)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Building/FrontOverDoor"]
-mesh = SubResource("BoxMesh_jy1nc")
+mesh = SubResource("BoxMesh_arw4h")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Building/FrontOverDoor"]
 shape = SubResource("BoxShape3D_imwcu")
@@ -415,19 +464,19 @@ transform = Transform3D(-4.37114e-08, -0.5, 0.866025, 0, 0.866025, 0.5, -1, 2.18
 mesh = SubResource("BoxMesh_ghv3k")
 
 [node name="Desk" type="MeshInstance3D" parent="Building/DJSet"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, 2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.67307, 2)
 mesh = SubResource("BoxMesh_5s17v")
 
 [node name="LegLeft" type="MeshInstance3D" parent="Building/DJSet/Desk"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4, -0.41, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4, -0.664238, 0)
 mesh = SubResource("BoxMesh_ruknb")
 
 [node name="LegRight" type="MeshInstance3D" parent="Building/DJSet/Desk"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4, -0.41, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4, -0.665625, 0)
 mesh = SubResource("BoxMesh_ruknb")
 
 [node name="Front" type="MeshInstance3D" parent="Building/DJSet/Desk"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.9, 0.501)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -1.42044, 0.502)
 mesh = SubResource("PlaneMesh_4korl")
 
 [node name="XROrigin3D" type="XROrigin3D" parent="."]
@@ -444,7 +493,7 @@ tracker = &"left_hand"
 hand_material_override = SubResource("StandardMaterial3D_kpmmg")
 
 [node name="MovementDirect" parent="XROrigin3D/LeftController" instance=ExtResource("2_umgjk")]
-max_speed = 6.0
+max_speed = 4.0
 strafe = true
 
 [node name="FunctionPickup" parent="XROrigin3D/LeftController" instance=ExtResource("6_3tyiv")]
@@ -470,11 +519,11 @@ ranged_collision_mask = 32768
 
 [node name="PlayerBody" parent="XROrigin3D" instance=ExtResource("5_5y3fa")]
 collision_mask = 1
-player_radius = 0.05
+player_radius = 0.025
 push_rigid_bodies = false
 
 [node name="Shapes" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.350908, -8)
 
 [node name="Cube" type="RigidBody3D" parent="Shapes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.27338, 2.1777, 0.0666494)
@@ -523,7 +572,7 @@ skeleton = NodePath("")
 shape = SubResource("BoxShape3D_5483o")
 
 [node name="Rect2" type="RigidBody3D" parent="Shapes"]
-transform = Transform3D(-0.0207854, 0.999784, 0, -0.999784, -0.0207854, 0, 0, 0, 1, 1.39606, 2.45284, 0)
+transform = Transform3D(-0.0207854, 0.999784, 0, -0.999784, -0.0207854, 0, 0, 0, 1, 2.39606, 2.45284, 0)
 collision_layer = 32768
 collision_mask = 32768
 freeze = true
@@ -56513,7 +56562,7 @@ script = ExtResource("11_ggrom")
 xval = 25
 
 [node name="D" type="Node3D" parent="LightArray"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.539734, 2.18953, 1.5205)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.539734, 2.43202, 1.5205)
 
 [node name="Z0" type="Node3D" parent="LightArray/D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.52)
@@ -99492,7 +99541,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.32, 0)
 mesh = SubResource("BoxMesh_7hea5")
 
 [node name="ColorPicker" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.57506, 2.29869, -8.10776)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.57506, 2.60639, -8.10776)
 script = ExtResource("15_us3sp")
 
 [node name="Cyl" type="MeshInstance3D" parent="ColorPicker"]
@@ -99505,6 +99554,18 @@ mesh = SubResource("CylinderMesh_sxdho")
 [node name="Sample" type="MeshInstance3D" parent="ColorPicker"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.397051, 0)
 mesh = SubResource("SphereMesh_5lgqj")
+
+[node name="RedBall" type="MeshInstance3D" parent="ColorPicker"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0.25, 0)
+mesh = SubResource("SphereMesh_r3xgv")
+
+[node name="GreenBall" type="MeshInstance3D" parent="ColorPicker"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.177249, 0.25, -0.257581)
+mesh = SubResource("SphereMesh_ou014")
+
+[node name="BlueBall" type="MeshInstance3D" parent="ColorPicker"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.168218, 0.25, 0.245768)
+mesh = SubResource("SphereMesh_8eoua")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.00678, -7.23841)
